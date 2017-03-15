@@ -4,125 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.halaya.currencyconverter.MainActivity">
+    tools:context="com.example.halaya.currencyconverter.MainActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
 
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="344dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextClock
+        android:id="@+id/currentDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+
+    <Spinner
+        android:id="@+id/spinnerLeft"
+        android:layout_width="110dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="63dp"
+        android:layout_marginTop="62dp"
+        app:layout_constraintBottom_toTopOf="@+id/currentExchangeRates"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <EditText
+        android:id="@+id/valueToConvert"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="32dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="@+id/currentExchangeRates"
+        app:layout_constraintRight_toLeftOf="@+id/spinnerLeft"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
         app:layout_constraintVertical_bias="1.0"
         tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintTop_creator="1">
-
-        <TextClock
-            android:id="@+id/currentDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_constraintLeft_creator="1"
-            tools:layout_constraintRight_creator="1"
-            tools:layout_constraintTop_creator="1" />
-
-        <Spinner
-            android:id="@+id/spinnerRight"
-            android:layout_width="110dp"
-            android:layout_height="34dp"
-            android:layout_marginTop="40dp"
-            app:layout_constraintHorizontal_bias="0.937"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/currentDate"
-            tools:layout_constraintTop_creator="1" />
-
-        <Spinner
-            android:id="@+id/spinnerLeft"
-            android:layout_width="110dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/spinnerRight"
-            app:layout_constraintHorizontal_bias="0.437"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/spinnerRight"
-            app:layout_constraintVertical_bias="0.0"
-            tools:layout_constraintBottom_creator="1"
-            tools:layout_constraintTop_creator="1" />
-
-        <EditText
-            android:id="@+id/valueToConvert"
-            android:layout_width="70dp"
-            android:layout_height="39dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="18dp"
-            android:ems="10"
-            android:gravity="center"
-            android:inputType="numberDecimal"
-            app:layout_constraintRight_toLeftOf="@+id/spinnerLeft"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerLeft"
-            tools:layout_constraintRight_creator="1"
-            tools:layout_constraintTop_creator="1" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:text="TextView"
-            app:layout_constraintLeft_toLeftOf="@+id/spinnerRight"
-            app:layout_constraintRight_toRightOf="@+id/spinnerRight"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerRight"
-            tools:layout_constraintLeft_creator="1"
-            tools:layout_constraintRight_creator="1"
-            tools:layout_constraintTop_creator="1" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginStart="6dp"
-            android:gravity="center"
-            android:text="TextView"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintLeft_toRightOf="@+id/valueToConvert"
-            app:layout_constraintRight_toRightOf="@+id/spinnerLeft"
-            app:layout_constraintTop_toTopOf="@+id/valueToConvert"
-            tools:layout_constraintLeft_creator="1"
-            tools:layout_constraintRight_creator="1"
-            tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
 
-        <LinearLayout
-            android:layout_width="328dp"
-            android:layout_height="249dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="19dp"
-            android:orientation="horizontal"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            tools:layout_constraintLeft_creator="1"
-            tools:layout_constraintRight_creator="1"
-            tools:layout_constraintTop_creator="1">
-
-            <ListView
-                android:id="@+id/currentExchangeRates"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="101dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintRight_toRightOf="@+id/spinnerLeft"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
 
-        </LinearLayout>
-
-    </android.support.constraint.ConstraintLayout>
+    <ListView
+        android:id="@+id/currentExchangeRates"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
 
 </android.support.constraint.ConstraintLayout>
