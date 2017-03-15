@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     String defaultCurrency;
     EditText valueToConvert;
     Response<LatestExchangeRates> LatestRatesResponse;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
         valueToConvert.addTextChangedListener(new TextWatcher() {
 
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+            }
 
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
@@ -116,11 +118,12 @@ public class MainActivity extends AppCompatActivity {
         return spinner;
     }
 
-    protected void updateDisplay(Response<LatestExchangeRates> response){
-        String stringValueToConvert =  valueToConvert.getText().toString();
-        if(stringValueToConvert.isEmpty()) {
+    protected void updateDisplay(Response<LatestExchangeRates> response) {
+        String stringValueToConvert = valueToConvert.getText().toString();
+        if (stringValueToConvert.isEmpty()) {
             stringValueToConvert = "1";
             valueToConvert.setText("1");
+        }
         BigDecimal decimalValueToConvert = new BigDecimal(stringValueToConvert);
 
         List<String> rates = new ArrayList<>();
