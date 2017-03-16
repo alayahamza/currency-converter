@@ -1,6 +1,8 @@
 package com.example.halaya.currencyconverter;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -12,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,45 +42,55 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(isOnline()){
 
-        ListView exchangeRateComparedToDefaultCurrency = (ListView) findViewById(R.id.currentExchangeRates);
-        String[] currencyArray = getResources().getStringArray(R.array.currencies);
-        defaultCurrency = currencyArray[0];
-        ArrayAdapter<CharSequence> currencyAdapter = ArrayAdapter.createFromResource(this,
-                R.array.currencies, android.R.layout.simple_spinner_item);
-        fillCurrencyList(R.id.spinnerLeft, currencyAdapter);
-        exchangeRateArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        exchangeRateComparedToDefaultCurrency.setAdapter(exchangeRateArrayAdapter);
-        final Spinner currencySpinner = (Spinner) findViewById(R.id.spinnerLeft);
-        valueToConvert = (EditText) findViewById(R.id.valueToConvert);
-        valueToConvert.setText("1");
-        currencySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                defaultCurrency = currencySpinner.getSelectedItem().toString();
-                getRetrofitObject();
-            }
+            ListView exchangeRateComparedToDefaultCurrency = (ListView) findViewById(R.id.currentExchangeRates);
+            String[] currencyArray = getResources().getStringArray(R.array.currencies);
+            defaultCurrency = currencyArray[0];
+            ArrayAdapter<CharSequence> currencyAdapter = ArrayAdapter.createFromResource(this,
+                    R.array.currencies, android.R.layout.simple_spinner_item);
+            fillCurrencyList(R.id.spinnerLeft, currencyAdapter);
+            exchangeRateArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+            exchangeRateComparedToDefaultCurrency.setAdapter(exchangeRateArrayAdapter);
+            final Spinner currencySpinner = (Spinner) findViewById(R.id.spinnerLeft);
+            valueToConvert = (EditText) findViewById(R.id.valueToConvert);
+            valueToConvert.setText("1");
+            currencySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    defaultCurrency = currencySpinner.getSelectedItem().toString();
+                    getRetrofitObject();
+                }
 
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                return;
-            }
-        });
+                public void onNothingSelected(AdapterView<?> adapterView) {
+                    return;
+                }
+            });
 
-        valueToConvert.addTextChangedListener(new TextWatcher() {
+            valueToConvert.addTextChangedListener(new TextWatcher() {
 
-            public void afterTextChanged(Editable s) {
-            }
+                public void afterTextChanged(Editable s) {
+                }
 
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
+                public void beforeTextChanged(CharSequence s, int start,
+                                              int count, int after) {
+                }
 
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-                updateDisplay(LatestRatesResponse);
-            }
-        });
+                public void onTextChanged(CharSequence s, int start,
+                                          int before, int count) {
+                    updateDisplay(LatestRatesResponse);
+                }
+            });
+        }else{
+            Toast.makeText(getApplicationContext(), "No internet access, please check your network connection !", Toast.LENGTH_LONG).show();
+        }
     }
 
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
     void getRetrofitObject() {
 
         Retrofit retrofit = new Retrofit.Builder()
